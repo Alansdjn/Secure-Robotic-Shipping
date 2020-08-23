@@ -1,0 +1,147 @@
+(*channels and functions definition*)
+
+free c_cs : channel. 
+free c_rs : channel. 
+free c_cr : channel. 
+free c_r : channel[private].
+
+(*asymmetric encryption*)
+type pkey.
+type skey.
+fun pk(skey): pkey.
+fun aenc(bitstring, pkey): bitstring.
+reduc forall x: bitstring, y:skey; adec(aenc(x, pk(y)), y)= x.
+
+(*symmetric encryption*)
+type key.
+fun senc(bitstring, key ): bitstring.
+fun senc'(bitstring, bitstring, bitstring, bitstring, pkey, key ): bitstring.
+reduc forall m: bitstring, : key; sdec(senc(m, K),K)= m.
+reduc forall m1: bitstring, m2: bitstring,m3: bitstring,m4: bitstring, m5: pkey, K: key; sdec'(senc'(m1,m2,m3,m4,m5,K),K)= (m1,m2,m3,m4,m5).
+
+(*hash*)
+fun connect3(bitstring,key,bitstring): bitstring.
+fun connect3'(bitstring,bitstring,key): bitstring.
+fun connect4(bitstring,key,bitstring,bitstring):bitstring.
+fun hash(bitstring):bitstring.
+
+(*Events illustration and relationships examination*)
+
+(*correspondences and authentication*)
+event c2s_start.
+event s2c_start.
+event s2r_start.
+event c2r_start.
+event c2s_end.
+event s2c_end.
+event s2r_end.
+event c2r_end.
+event match_secret.
+
+query event(c2s_end)==>event(c2s_start).
+query inj-event(s2c_end)==>inj-event(s2c_start).
+query inj-event(s2r_end)==>inj-event(s2r_start).
+query inj-event(c2r_end)==>inj-event(c2r_start).
+
+(*nested correspondences*)
+query inj-event(match_secret) ==> (((inj-event(c2r_end)))==>((inj-event(s2c_start))&&(inj-event(c2r_start)))).
+
+(*paraments predefinition and confidentiality*)
+
+(*reachability*)
+free tid:bitstring.
+free ids:bitstring[private].
+free K:key[private].
+free Ns:bitstring[private].
+free Tqrgen:bitstring[private].
+free UAID:bitstring[private].
+free sk:skey[private].
+free secretQR:bitstring[private].
+
+query attacker(ids).
+query attacker(K).
+query attacker(Ns).
+query attacker(Tqrgen).
+query attacker(UAID).
+query attacker(sk).
+query attacker(secretQR).
+
+(*strong secrecy*)
+(*for example, IND-CPA*)
+noninterf sk.
+
+(*weak bitstrings/keys*)
+weaksecret K.   (*weak K between c&s*)
+weaksecret UAID.
+weaksecret sk.
+
+(*client implementation*)
+let client(tid:bitstring,K:key,ids:bitstring,secretQR:bitstring)=
+    
+    (*step1*)
+    new Nc:bitstring;
+    let Nx = senc(Nc, K) in               (*don't support XOR*)
+    let v0 = hash(connect3(Nc, K, tid)) in
+    event c2s_start;
+    out(c_cs,(tid,Nx,v0));
+    
+    (*step4*)
+    in(c_cs,(X:bitstring,R:bitstring));
+    let (=R)=hash(connect4(X, K, ids, Nc)) in
+    event s2c_end;
+    let (Ns:bitstring,Tqrgen:bitstring,tid_new:bitstring,UAID:bitstring,pk:pkey)=sdec’(X, K) in
+    let secretC=hash(connect3'(Ns, Tqrgen, K)) in
+    let secretQR=secretC in
+    let secretC_send=aenc(secretC,pk) in
+    event c2r_start;
+    out(c_cr,(secretC_send,UAID)).
+
+(*server implementation*)
+let server(tid:bitstring,K:key,ids:bitstring,Ns:bitstring,Tqrgen:bitstring,UAID:bitstring,sk:skey)=
+    
+    (*step2*)
+    in(c_cs,(tid_check:bitstring,Nx:bitstring,v0:bitstring));
+    if tid=tid_check then
+    let Nc=sdec(Nx, K) in
+    let (=v0)=hash(connect3(Nc, K, tid)) in
+    event c2s_end;
+    new tid_new:bitstring;
+    let pk= pk(sk) in
+    let X=senc'(Ns,Tqrgen,tid_new,UAID,pk,K) in
+    let R=hash(connect4(X,K,ids,Nc)) in
+    event s2c_start;
+    out(c_cs,(X,R));
+    
+    (*secure channel*)
+    out(c_r,(sk,UAID));
+    
+    (*step3*)
+    let secretR=hash(connect3'(Ns,Tqrgen,K)) in
+    let secretR_send=aenc((secretR),pk) in
+    event s2r_start;
+    out(c_rs,secretR_send).
+
+(*robot implementation*)
+let robot(ids:bitstring)=
+   
+    (*step3*)
+    in(c_r,(sk:skey,UAID:bitstring));
+    in(c_rs,secretR_send:bitstring);
+    event s2r_end;
+    
+    (*step4*)
+    in(c_cr,(secretC_send:bitstring,UAID_check:bitstring));
+    if UAID=UAID_check then
+    event c2r_end;
+    
+    (*step5*)	
+    let (secretR:bitstring)=adec(secretR_send,sk) in
+    let secretC=adec(secretC_send,sk) in
+    if secretC=secretR then 
+    event match_secret.
+
+(*main function*)
+process
+    ((!(new tid:bitstring;new secretQR:bitstring;client(tid,K,ids,secretQR))) | 
+    (!(new Ns:bitstring;new Tqrgen:bitstring;new UAID:bitstring;new sk:skey;server(tid,K,ids,Ns,Tqrgen,UAID,sk)))|
+    (!(robot(ids))))
