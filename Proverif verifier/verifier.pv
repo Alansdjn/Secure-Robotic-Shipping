@@ -1,4 +1,4 @@
-(*Channels and functions definition*)
+(*channels and functions definition*)
 
 free c_cs : channel. 
 free c_rs : channel. 
@@ -46,9 +46,9 @@ query inj-event(c2r_end)==>inj-event(c2r_start).
 (*nested correspondences*)
 query inj-event(match_secret) ==> (((inj-event(c2r_end)))==>((inj-event(s2c_start))&&(inj-event(c2r_start)))).
 
-(*Paraments predefinition*)
+(*paraments predefinition*)
 
-(*Reachability*)
+(*reachability*)
 free tid:bitstring.
 free ids:bitstring[private].
 free K:key[private].
