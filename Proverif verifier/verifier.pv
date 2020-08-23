@@ -25,7 +25,7 @@ fun connect3'(bitstring,bitstring,key): bitstring.
 fun connect4(bitstring,key,bitstring,bitstring):bitstring.
 fun hash(bitstring):bitstring.
 
-(*Events illustration and relationships exammination*)
+(*Events illustration and relationships examination*)
 
 (*correspondences and authentication*)
 event c2s_start.
