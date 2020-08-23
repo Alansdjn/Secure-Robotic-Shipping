@@ -46,7 +46,7 @@ query inj-event(c2r_end)==>inj-event(c2r_start).
 (*nested correspondences*)
 query inj-event(match_secret) ==> (((inj-event(c2r_end)))==>((inj-event(s2c_start))&&(inj-event(c2r_start)))).
 
-(*paraments predefinition*)
+(*paraments predefinition and confidentiality*)
 
 (*reachability*)
 free tid:bitstring.
