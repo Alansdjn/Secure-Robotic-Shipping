@@ -8,6 +8,8 @@ This work is the code section of the dissertation &quot;Secure Shipping Using Ro
 
 The following figure shows how the system work:
 
+https://github.com/Jiapei-Yang/Secure-Robotic-Shipping/raw/master/fig1.jpg
+
 --------------------------------------------------------------------------------------
 **Explanation of files:**
 
