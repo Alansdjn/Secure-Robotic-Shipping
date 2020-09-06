@@ -82,7 +82,7 @@ The following figure shows how the system work:
 
 Ⅱ. Noncooperative authentication&#39;s simulation in Jupyter
 
-　　All data has already gone through pre-processing, and the work of capturing images is also already done. Therefore, open any Jupyter file and run it directly. However, training and testing could be very time-consuming.
+　　Put the CUHK01 dataset under &quot;/data/&quot;. open any Jupyter file and run it directly. However, training and testing could be very time-consuming.
 
 　　This part&#39;s work is briefly introduced in the video:
 
