@@ -8,7 +8,7 @@ This work is the code section of the dissertation &quot;Secure Shipping Using Ro
 
 The following figure shows how the system work:
 
-https://github.com/Jiapei-Yang/Secure-Robotic-Shipping/raw/master/fig1.jpg
+![Alt text](https://github.com/Jiapei-Yang/Secure-Robotic-Shipping/raw/master/fig1.jpg)
 
 --------------------------------------------------------------------------------------
 **Explanation of files:**
@@ -93,7 +93,7 @@ https://github.com/Jiapei-Yang/Secure-Robotic-Shipping/raw/master/fig1.jpg
 
 The figure shows how our system work in reality. We will introduce the environmental requirements, and introduce how to run each step of in detail:
 
-
+![Alt text](https://github.com/Jiapei-Yang/Secure-Robotic-Shipping/blob/master/fig2.JPG?raw=true)
 
 Ⅰ. Environmental requirements:
 
