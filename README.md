@@ -1,7 +1,11 @@
 **README:**
-This work is available in Github:
-https://github.com/Jiapei-Yang/Secure-Robotic-Shipping
+--------------------------------------------------------------------------------------
+**Update**
 
+**Handbook.pdf will be uploaded in coming days.**
+**Please see Handbook.pdf for a more detailed explanation of profiles.**
+
+--------------------------------------------------------------------------------------
 **Secure Shipping Using Robotic Delivery System**
 
 --------------------------------------------------------------------------------------
