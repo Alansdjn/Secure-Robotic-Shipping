@@ -241,9 +241,9 @@ _roslaunch turtlebot3\_navigation turtlebot3\_navigation.launch map\_file:=$HOME
 
 d. Noncooperative authentication
 
-　　When we come into this stage, robot launches a new terminal and setup python3 environment:
+　　When we come into this stage, robot launches a new terminal and runs:
 
-_source ~/venv3/bin/activate_
+_python capture.py_
 
 　　In this way, we successfully captured an image of pedestrian, did pedestrian detection in it, resize the person&#39;s image and stored it in &quot;/data/reid\_robot/&quot;.
 
