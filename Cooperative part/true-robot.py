@@ -6,7 +6,6 @@ import time
 import os
 from PIL import Image
 import pyzbar.pyzbar as pyzbar
-import cv2
 
 address = ('192.168.43.74',33334)# robot ip:192.168.43.74
 ids='c2add694bf942dc77b376592d9c862cd'
