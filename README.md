@@ -36,9 +36,13 @@ Fig. 1 and Fig. 2 show how the system work. For more details please read the pro
 
 Figure 1. The proposed robotic delivery system
 
+![](https://github.com/Jiapei-Yang/Secure-Robotic-Shipping/blob/master/Image/fig2.png)
+
 Figure 2. Details of off-line authentication methods
 
 Fig. 3 illustrates the implementation of the system:
+
+![](https://github.com/Jiapei-Yang/Secure-Robotic-Shipping/blob/master/Image/fig3.png)
 
 Figure 3. The proposed system implementation
 
@@ -126,11 +130,15 @@ We will introduce the environmental requirements, and how to run the demo.
 
 Table 1 shows the implementation environment of cooperative authentication. We can use two laptops as the client and the server, and Turtlebot3 as the robot. Here we install Ubuntu 16.04 in the client and the server and Ubuntu mate 16.04 in the robot. Then utilize ROS kinetic, which is recommended in Turtlebot3 and supports Python 2, in the server and the robot and set the server as the master.
 
+![](https://github.com/Jiapei-Yang/Secure-Robotic-Shipping/blob/master/Image/tab1.png)
+
 Table 1. Implementation environment of cooperative authentication
 
 #### **b. Non-cooperative off-line authentication:**
 
 The following table shows the implementation environment of non-cooperative authentication. We use the same devices of the cooperative part, but focus on the server and the robot. In addition, _virtualenv_ is utilized for building the Python 3 virtual environment in two devices, and we use Python 3 to fulfil requirement of some libraries in the area of computer vision. To train and test our model we utilize CUHK01 dataset.
+
+![](https://github.com/Jiapei-Yang/Secure-Robotic-Shipping/blob/master/Image/tab2.png)
 
 Table 2. Implementation environment of non-cooperative authentication
 
@@ -188,13 +196,19 @@ _roslaunch turtlebot3\_navigation turtlebot3\_navigation.launch map\_file:=$HOME
 
 Press &quot;2D Pose Estimate&quot; to correct start position, and &quot;2D Nav Goal&quot; to select aimed destination. Robot plans the path and go there automatically as shown in Fig. 4.
 
+![](https://github.com/Jiapei-Yang/Secure-Robotic-Shipping/blob/master/Image/fig4.png)
+
 Figure 4. Navigation in the implementation of cooperative authentication
 
 ##### **Step C5** : QR code scan:
 
 Upon arriving the destination, insert &quot;Y&quot; in the robot as a signal of completed navigation. Then, the robot automatically tries to scan QR code shown by the client. The scanning work succeeds and the QR code is authenticated, so the robot shows &quot;matched!&quot; and complete the delivery as shown in Fig. 5 and Fig. 6.
 
+![](https://github.com/Jiapei-Yang/Secure-Robotic-Shipping/blob/master/Image/fig5.png)
+
 Figure 5. QR code scanning in the implementation of cooperative authentication
+
+![](https://github.com/Jiapei-Yang/Secure-Robotic-Shipping/blob/master/Image/fig6.png)
 
 Figure 6. Result of QR code scanning in cooperative authentication
 
@@ -264,6 +278,8 @@ _python capture.py_
 
 In this way, we successfully captured an image of pedestrian, did pedestrian detection in it, resize the person&#39;s image and stored it in &quot;/data/reid\_robot/&quot;.
 
+![](https://github.com/Jiapei-Yang/Secure-Robotic-Shipping/blob/master/Image/fig7.png)
+
 Figure 7. Failed QR code scanning and shifting to non-cooperative mode
 
 ##### **Step N5:** Person re-identification
@@ -278,10 +294,18 @@ If the output is &quot;same person&quot;, robot successfully recognized the clie
 
 Finally, input any character in the robot&#39;s terminal that runs true-robot.py so it can start to scan the QR code again and match as shown in Fig. 10 and Fig. 11.
 
+![](https://github.com/Jiapei-Yang/Secure-Robotic-Shipping/blob/master/Image/fig8.png)
+
 Figure 8. Person detection and re-identification
+
+![](https://github.com/Jiapei-Yang/Secure-Robotic-Shipping/blob/master/Image/fig9.png)
 
 Figure 9. Result of person detection and re-identification
 
+![](https://github.com/Jiapei-Yang/Secure-Robotic-Shipping/blob/master/Image/fig10.png)
+
 Figure 10. QR code scanning again
+
+![](https://github.com/Jiapei-Yang/Secure-Robotic-Shipping/blob/master/Image/fig11.png)
 
 Figure 11. Result of QR code scanning again
