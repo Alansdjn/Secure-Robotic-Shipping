@@ -120,13 +120,13 @@ We will introduce the environmental requirements, and how to run the demo.
 
 ### Ⅰ. Environmental requirements:
 
-#### a. Cooperative off-line authentication:
+#### **a. Cooperative off-line authentication:**
 
 Table 1 shows the implementation environment of cooperative authentication. We can use two laptops as the client and the server, and Turtlebot3 as the robot. Here we install Ubuntu 16.04 in the client and the server and Ubuntu mate 16.04 in the robot. Then utilize ROS kinetic, which is recommended in Turtlebot3 and supports Python 2, in the server and the robot and set the server as the master.
 
 Table 1. Implementation environment of cooperative authentication
 
-#### b. Non-cooperative off-line authentication:
+#### **b. Non-cooperative off-line authentication:**
 
 The following table shows the implementation environment of non-cooperative authentication. We use the same devices of the cooperative part, but focus on the server and the robot. In addition, _virtualenv_ is utilized for building the Python 3 virtual environment in two devices, and we use Python 3 to fulfil requirement of some libraries in the area of computer vision. To train and test our model we utilize CUHK01 dataset.
 
@@ -134,7 +134,7 @@ Table 2. Implementation environment of non-cooperative authentication
 
 ### Ⅱ. Detailed operation
 
-#### a. Cooperative off-line authentication demo:
+#### **a. Cooperative off-line authentication demo:**
 
 We can see the implementation of cooperative authentication in the video:
 
@@ -196,7 +196,7 @@ Figure 5. QR code scanning in the implementation of cooperative authentication
 
 Figure 6. Result of QR code scanning in cooperative authentication
 
-#### b. Cooperative off-line authentication demo:
+#### **b. Cooperative off-line authentication demo:**
 
 This part executes cooperative authentication twice: A failed one before shifting to the non-cooperative part, and the other successful one when the robot recognizes the client and shifts the mode back.
 
