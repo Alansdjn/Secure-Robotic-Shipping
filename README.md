@@ -31,7 +31,7 @@ Li, W, Zhao, R, and Wang, X. &quot;Human Re-identification with Transferred Metr
 [https://www.ee.cuhk.edu.hk/~xgwang/CUHK\_identification.html](https://www.ee.cuhk.edu.hk/~xgwang/CUHK_identification.html)
 
 Fig. 1 and Fig. 2 show how the system work. For more details please read the project&#39;s paper.
-
+![zzzzz](https://github.com/Jiapei-Yang/Secure-Robotic-Shipping/blob/master/Image/fig1.png)
 Figure 1. The proposed robotic delivery system
 
 Figure 2. Details of off-line authentication methods
